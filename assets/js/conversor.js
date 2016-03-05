@@ -35,10 +35,6 @@
       c_tok = (valor + 273.15);
       return (valor + 273.15);
     }
-    this.set_valor = function(v)
-    {
-      this.valor = v;
-    }
   }
 
   function Farenheit(valor)
@@ -48,12 +44,26 @@
 
   function Kelvin(valor)
   {
-
+    var k_toC = 0;
+    var k_toF = 0;
+    console.log("Accedo a clase Kelvin");
+    Temperatura.call(this,valor,'k');
+    this.toCelsius = function()
+    {
+      console.log("Cambiando a Celsius...");
+      k_toC = (valor - 273.15);
+      return (valor - 273.15);
+    }
+    this.toFarenheit = function()
+    {
+      console.log("Cambiando a Farenheit...");
+      k_toF = (k_toC * 9/5) + 32;
+      return (k_toC * 9/5) + 32;
+    }
   }
 
   function Metro(valor)
   {
-
 
   }
 
@@ -98,10 +108,11 @@
 
           break;
         case 'k':
-	       var kelvin = new kelvin(numero);
-         var k_toc = kelvin.toCelsius().toFixed(2);
-         var k_tof = f_toc.toFarenheit().toFixed(2);
- 	       elemento.innerHTML = k_toc + " Celsius" + ", " + k_tof + " Farenheit";
+	       var kelvin = new Kelvin(numero);
+         console.log("Valor: "+kelvin.valor);
+         console.log("Kelvin: "+kelvin.valor+",Celsius:"+kelvin.toCelsius());
+         console.log("Kelvin: "+kelvin.valor+",Farenheit:"+kelvin.toFarenheit());
+ 	       elemento.innerHTML = kelvin.toCelsius() + " Celsius" + ", " + kelvin.toFarenheit() + " Farenheit";
 
 	  break;
 	case 'm':
