@@ -17,6 +17,12 @@
     /* tipo es opcional. Debería admitir new Medida("45.2 F") */
   }
 
+  function Distancia(valor,tipo)
+  {
+    console.log("Accedo a clase Distancia");
+    Medida.call(this,valor,tipo);
+  }
+
   function Celsius(valor)
   {
     var c_tof = 0;
@@ -52,10 +58,10 @@
     this.toKelvin = function()
     {
       console.log("Cambiando a Kelvin...");
-      f_toK = (f_toC + 273.15); 
+      f_toK = (f_toC + 273.15);
       return f_toK;
     }
-    
+
   }
 
   function Kelvin(valor)
@@ -95,11 +101,6 @@
     }
   }
 
-  function Metro(valor)
-  {
-
-  }
-
   function Centimetro(valor)
   {
     Distancia.call(this,valor,'cm');
@@ -115,6 +116,22 @@
     {
       return valor * 10;
     }
+
+  function Metro(valor)
+  {
+      Distancia.call(this,valor,'m');
+      this.toKm = function()
+      {
+          return valor / 1000;
+      }
+      this.toCm = function()
+      {
+          return valor * 100;
+      }
+      this.toMm = function()
+      {
+          return valor * 1000;
+      }
 
   }
 
@@ -139,11 +156,7 @@
 
       switch (tipo) {
         case 'c':
-          var celsius = new Celsius(numero);
-          console.log("Valor: "+celsius.valor);
-          console.log("Celsius: "+celsius.valor+",Farenheit:"+celsius.toFarenheit());
-          console.log("Celsius: "+celsius.valor+",Kelvin:"+celsius.toKelvin());
-          elemento.innerHTML = celsius.toFarenheit().toFixed(2) + " Farenheit";
+
           break;
         case 'f':
           var farenheit = new Farenheit(numero);
@@ -155,11 +168,16 @@
          console.log("Kelvin: "+kelvin.valor+",Celsius:"+kelvin.toCelsius());
          console.log("Kelvin: "+kelvin.valor+",Farenheit:"+kelvin.toFarenheit());
  	       elemento.innerHTML = kelvin.toCelsius() + " Celsius" + ", " + kelvin.toFarenheit() + " Farenheit";
+	        break;
 
-	  break;
-	case 'm':
-
-	   break;
+        case 'm':
+          var metro = new Metro(numero);
+          console.log("Valor: "+metro.valor);
+          console.log("Metro: "+metro.valor+",Km:"+metro.toKm());
+          console.log("Metro: "+metro.valor+",Cm:"+metro.toCm());
+          console.log("Metro: "+metro.valor+",Mm:"+metro.toMm());
+          elemento.innerHTML = metro.toKm() + " Km" + ", " + metro.toCm() + " Cm" + ", " + metro.toMm() + " Mm";
+         break;
 	default:
           /* rellene este código */
       }
