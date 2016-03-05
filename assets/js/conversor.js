@@ -45,6 +45,22 @@
 
   function Farenheit(valor)
   {
+    var f_toC = 0;
+    var f_toK = 0;
+    console.log("Accedo a la clase Fahrenheit.");
+    Temperatura.call(this,valor,'f');
+    this.toCelsius = function()
+    {
+      console.log("Cambiando a Celsius...");
+      f_toC = (valor - 32) * 5/9;
+      return f_toC;
+    }
+    this.toKelvin = function()
+    {
+      console.log("Cambiando a Kelvin...");
+      f_toK = (f_toC + 273.15);
+      return f_toK;
+    }
 
   }
 
@@ -62,6 +78,7 @@
     }
     this.toFarenheit = function()
     {
+      console.log(contador);
       console.log("Cambiando a Farenheit...");
       k_toF = (k_toC * 9/5) + 32;
       return (k_toC * 9/5) + 32;
@@ -98,12 +115,9 @@
         regexp    = /^\s*([-+]?\d+(?:\.\d+)?(?:e[+-]?\d+)?)\s*([a-z,A-Z]+)\s*$/i,
         valor     = valor.match(regexp);
 
-    var destino = null;
-
     if (valor) {
       var numero = valor[1],
-          tipo   = valor[2].toLowerCase();
-
+      tipo = valor[2].toLowerCase();
       numero = parseFloat(numero);
       console.log("Valor: " + numero + ", Tipo: " + tipo);
 
@@ -113,10 +127,7 @@
           break;
         case 'f':
           var farenheit = new Farenheit(numero);
-	        var f_toc = farenheit.toCelsius().toFixed(2);
-	        var f_tok = f_toc.toKelvin().toFixed(2);
-          elemento.innerHTML = farenheit.toCelsius().toFixed(2) + " Celsius";
-
+ 	        elemento.innerHTML = farenheit.toCelsius().toFixed(2) + " Celsius" + ", " + farenheit.toKelvin().toFixed() + " Kelvin";
           break;
         case 'k':
 	       var kelvin = new Kelvin(numero);
