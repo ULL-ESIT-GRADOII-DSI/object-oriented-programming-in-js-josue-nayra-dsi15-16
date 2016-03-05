@@ -72,10 +72,26 @@
     }
     this.toFarenheit = function()
     {
-      console.log(contador);
       console.log("Cambiando a Farenheit...");
       k_toF = (k_toC * 9/5) + 32;
       return (k_toC * 9/5) + 32;
+    }
+  }
+
+  function Kilometro(valor)
+  {
+    Distancia.call(this,valor,'Km');
+    this.toM = function()
+    {
+        return valor * 1000;
+    }
+    this.toCm = function()
+    {
+        return valor * 10000;
+    }
+    this.toMm = function()
+    {
+        return valor * 1000000;
     }
   }
 
@@ -84,9 +100,21 @@
 
   }
 
-  function Centimetros(valor)
+  function Centimetro(valor)
   {
-
+    Distancia.call(this,valor,'cm');
+    this.toM = function()
+    {
+      return valor / 100;
+    }
+    this.toKm = function()
+    {
+      return valor / 10000;
+    }
+    this.toMm = function()
+    {
+      return valor * 10;
+    }
 
   }
 

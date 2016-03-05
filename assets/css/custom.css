@@ -42,17 +42,8 @@ th, td
     text-align: right;
     font-size:large; 
 } 
-.pie{
-    width: 100%;
-    height: 10px;
-    position:relative;
-    font-family:Century Gothic,CenturyGothic,AppleGothic,sans-serif;
-    font-size:22px;
-}    
-fieldset{
-    background: #E6E6E6;
-    border-radius: 30px 30px 30px 30px;
-}
+   
+
 #converted      /*estilo para el resultado*/
 { 
     color: green; 
@@ -66,7 +57,7 @@ input
 }
 
 #container{
-    height:80%;
+    height:100%;
     width: 100%;
     margin-bottom:-50px;
     position:relative;
