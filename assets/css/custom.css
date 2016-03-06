@@ -40,6 +40,7 @@ th, td
     text-align: center;
     vertical-align: top;
     text-align: right;
+<<<<<<< HEAD
     font-size:large;
 }
 .pie{
@@ -53,6 +54,12 @@ fieldset{
     background: #E6E6E6;
     border-radius: 30px 30px 30px 30px;
 }
+=======
+    font-size:large; 
+} 
+   
+
+>>>>>>> 27354869d1819ae5d6961cbcfea9d85527a1571a
 #converted      /*estilo para el resultado*/
 {
     color: green;
@@ -66,7 +73,7 @@ input
 }
 
 #container{
-    height:80%;
+    height:100%;
     width: 100%;
     margin-bottom:-50px;
     position:relative;

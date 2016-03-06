@@ -78,10 +78,43 @@
     }
     this.toFarenheit = function()
     {
-      console.log(contador);
       console.log("Cambiando a Farenheit...");
       k_toF = (k_toC * 9/5) + 32;
       return (k_toC * 9/5) + 32;
+    }
+  }
+
+  function Kilometro(valor)
+  {
+    Distancia.call(this,valor,'Km');
+    this.toM = function()
+    {
+        return valor * 1000;
+    }
+    this.toCm = function()
+    {
+        return valor * 10000;
+    }
+    this.toMm = function()
+    {
+        return valor * 1000000;
+    }
+  }
+
+  function Centimetro(valor)
+  {
+    Distancia.call(this,valor,'cm');
+    this.toM = function()
+    {
+      return valor / 100;
+    }
+    this.toKm = function()
+    {
+      return valor / 10000;
+    }
+    this.toMm = function()
+    {
+      return valor * 10;
     }
   }
 
@@ -100,6 +133,7 @@
       {
           return valor * 1000;
       }
+
   }
 
   exports.Temperatura = Temperatura;
@@ -122,35 +156,36 @@
       console.log("Valor: " + numero + ", Tipo: " + tipo);
 
       switch (tipo) {
-        case 'c':
+            case 'c':
 
-          break;
-        case 'f':
-          var farenheit = new Farenheit(numero);
- 	        elemento.innerHTML = farenheit.toCelsius().toFixed(2) + " Celsius" + ", " + farenheit.toKelvin().toFixed() + " Kelvin";
-          break;
-        case 'k':
-	       var kelvin = new Kelvin(numero);
-         console.log("Valor: "+kelvin.valor);
-         console.log("Kelvin: "+kelvin.valor+",Celsius:"+kelvin.toCelsius());
-         console.log("Kelvin: "+kelvin.valor+",Farenheit:"+kelvin.toFarenheit());
- 	       elemento.innerHTML = kelvin.toCelsius() + " Celsius" + ", " + kelvin.toFarenheit() + " Farenheit";
-	        break;
+              break;
+            case 'f':
+              var farenheit = new Farenheit(numero);
+     	        elemento.innerHTML = farenheit.toCelsius().toFixed(2) + " Celsius" + ", " + farenheit.toKelvin().toFixed() + " Kelvin";
+              break;
+            case 'k':
+    	       var kelvin = new Kelvin(numero);
+             console.log("Valor: "+kelvin.valor);
+             console.log("Kelvin: "+kelvin.valor+",Celsius:"+kelvin.toCelsius());
+             console.log("Kelvin: "+kelvin.valor+",Farenheit:"+kelvin.toFarenheit());
+     	       elemento.innerHTML = kelvin.toCelsius() + " Celsius" + ", " + kelvin.toFarenheit() + " Farenheit";
+    	        break;
 
-        case 'm':
-          var metro = new Metro(numero);
-          console.log("Valor: "+metro.valor);
-          console.log("Metro: "+metro.valor+",Km:"+metro.toKm());
-          console.log("Metro: "+metro.valor+",Cm:"+metro.toCm());
-          console.log("Metro: "+metro.valor+",Mm:"+metro.toMm());
-          elemento.innerHTML = metro.toKm() + " Km" + ", " + metro.toCm() + " Cm" + ", " + metro.toMm() + " Mm";
-         break;
-	default:
-          /* rellene este código */
-      }
+            case 'm':
+              var metro = new Metro(numero);
+              console.log("Valor: "+metro.valor);
+              console.log("Metro: "+metro.valor+",Km:"+metro.toKm());
+              console.log("Metro: "+metro.valor+",Cm:"+metro.toCm());
+              console.log("Metro: "+metro.valor+",Mm:"+metro.toMm());
+              elemento.innerHTML = metro.toKm() + " Km" + ", " + metro.toCm() + " Cm" + ", " + metro.toMm() + " Mm";
+             break;
+    	default:
+              /* rellene este código */
+        }
     }
     else
       elemento.innerHTML = "";
-  }
+
+    }
 
 })(this);
