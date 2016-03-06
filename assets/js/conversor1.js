@@ -7,7 +7,7 @@
     this.valor = valor || 0;
     this.tipo  = tipo  || "Sin tipo";
     /* tipo es opcional. Debería admitir  new Medida("45.2 Km") */
-    /* ademas de new Medida(45.2, "Km") */
+    /* ademas de new Medida(45.2, "Km"  ) */
   }
 
   function Temperatura(valor,tipo)
@@ -176,6 +176,7 @@
   exports.Centimetro = Centimetro;
   exports.KiloMetro = Kilometro;
   exports.Pulgada = Pulgada;
+  exports.Metro3 = Metro3;
 
     exports.convertir = function() {
     console.log("Entre en convertir");
@@ -186,14 +187,6 @@
         valor     = valor.match(regexp);
     //regexp = ^\s*([-+]?\d+(?:\.\d*)?(?:e[+-]?\d+)?)\s*(f(a(r(e(n(h(e(i(t)?)?)?)?)?)?)?)?|(c(e(l(s(i(u(s)?)?)?)?)?)?)|(k(e(l(v(i(n)?)?)?)?)?)|m)\s*(to)?\s+(c(e(l(s(i(u(s)?)?)?)?)?)?|k(e(l(v(i(n)?)?)?)?)?|f(a(r(e(n(h(e(i(t)?)?)?)?)?)?)?)?|([kmc]?[m]))$/i
     //regexp    = /^\s*([-+]?\d+(?:\.\d*)?(?:e[+-]?\d+)?)\s*([f]([a]|[a][r]?|(ar)[e]?|(are)[n]?|(aren)[h]?|(arenh)[e]?|(arenhe)[i]?|(arenhei)[t]?)?)\s*(to)?\s*([c]([e]|[e][l]?|(el)[s]?|(els)[i]?|(elsi)[u]?|(elsiu)[s]?)?)?$/i,
-    if(valor)
-    {
-      var medida = new Medida(valor);
-    }
-    else
-    {
-      elemento.innerHTML = "Error! Pruebe algo como '3C to K' o '3C Kelvin'";
-    }
 
     if (valor) {
       console.log("VALORRR->"+valor);
