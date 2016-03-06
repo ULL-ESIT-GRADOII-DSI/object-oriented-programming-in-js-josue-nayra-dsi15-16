@@ -181,7 +181,24 @@
       switch (tipo) {
             case 'c':
               var celsius = new Celsius(numero);
-     	        elemento.innerHTML = celsius.toFarenheit().toFixed(2) + " Fahrenheit" + ", " + celsius.toKelvin().toFixed() + " Kelvin";
+           
+              if(destino == "k")
+              {
+                elemento.innerHTML = celsius.toKelvin().toFixed(2) + " Kelvin";
+              }
+              else
+              {
+                if(destino == "f")
+                {
+                  elemento.innerHTML = celsius.toFarenheit().toFixed(2) + " Farenheit";
+                }
+                else
+                {
+                  elemento.innerHTML = "Introduzca la unidad de destino";  
+                }
+              }
+
+     	        //elemento.innerHTML = celsius.toFarenheit().toFixed(2) + " Fahrenheit" + ", " + celsius.toKelvin().toFixed() + " Kelvin";
               break;
             case 'f':
               var farenheit = new Farenheit(numero);
