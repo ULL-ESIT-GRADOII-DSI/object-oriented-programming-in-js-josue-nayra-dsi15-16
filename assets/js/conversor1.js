@@ -16,12 +16,14 @@
     Medida.call(this,valor,tipo);
     /* tipo es opcional. Debería admitir new Medida("45.2 F") */
   }
+  Temperatura.prototype = new Medida();
 
   function Distancia(valor,tipo)
   {
     console.log("Accedo a clase Distancia");
     Medida.call(this,valor,tipo);
   }
+  Distancia.prototype = new Medida();
 
   function Celsius(valor)
   {
@@ -42,6 +44,7 @@
       return c_tok;
     }
   }
+  Celsius.prototype = new Temperatura();
 
   function Farenheit(valor)
   {
@@ -63,6 +66,7 @@
     }
 
   }
+  Farenheit.prototype = Temperatura();
 
   function Kelvin(valor)
   {
@@ -83,6 +87,7 @@
       return k_toF;
     }
   }
+  Kelvin.prototype = new Temperatura();
 
   function Kilometro(valor)
   {
@@ -100,6 +105,7 @@
         return valor * 1000000;
     }
   }
+  Distancia.prototype = new Distancia();
 
   function Centimetro(valor)
   {
@@ -117,6 +123,7 @@
       return valor * 10;
     }
   }
+  Centimetro.prototype = new Distancia();
 
   function Metro(valor)
   {
@@ -133,16 +140,17 @@
     {
         return valor * 1000;
     }
-
   }
+  Metro.prototype = new Distancia();
 
-  function Pulgadas(valor){
+  function Pulgada(valor){
     Distancia.call(this,valor,'in');
     this.toIn = function()
     {
       return valor * 0.39370;
     }
   }
+  Pulgada.protype = new Distancia();
 
   exports.Temperatura = Temperatura;
   exports.Celsius = Celsius;
@@ -152,7 +160,8 @@
   exports.Metro = Metro;
   exports.Centimetro = Centimetro;
   exports.KiloMetro = Kilometro;
-
+  exports.Pulgada = Pulgada;
+  
     exports.convertir = function() {
     console.log("Entre en convertir");
     var valor     = document.getElementById('convert').value,
@@ -221,13 +230,14 @@
                }
                else
                {
-                 elemento.innerHTML = "Introduzca la unidad de destino(Celsius|Kelvin)";
+                 elemento.innerHTML = "Introduzca la unidad de destino correctamente(Celsius|Farenheit)";
                }
              }
     	       break;
 
             case 'm':
               var metro = new Metro(numero);
+
               if(destino == "km")
                   elemento.innerHTML = metro.toKm() + " Km.";
               else
@@ -239,7 +249,7 @@
                   if(destino == "mm")
                     elemento.innerHTML = metro.toMm() + " mm.";
                   else
-                    elemento.innerHTML = "Introduzca la unidad de destino(Km|cm|mm)";
+                    elemento.innerHTML = "Introduzca la unidad de destino correctamente(Km|cm|mm)";
                 }
               }
      	       break;
@@ -256,7 +266,7 @@
                    if(destino == "mm")
                      elemento.innerHTML = centimetro.toMm() + " mm.";
                    else
-                     elemento.innerHTML = "Introduzca la unidad de destino(Km|m|mm)";
+                     elemento.innerHTML = "Introduzca la unidad de destino correctamente(Km|m|mm)";
                  }
                }
             break;
@@ -273,7 +283,7 @@
                   if(destino == "mm")
                     elemento.innerHTML = kilometro.toMm() + " mm.";
                   else
-                    elemento.innerHTML = "Introduzca la unidad de destino(Km|m|mm)";
+                    elemento.innerHTML = "Introduzca la unidad de destino correctamente(m|cm|mm)";
                 }
               }
              break;
