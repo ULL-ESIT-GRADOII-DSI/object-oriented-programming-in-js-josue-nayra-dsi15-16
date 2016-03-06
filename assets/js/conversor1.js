@@ -219,26 +219,24 @@
 
             case 'm':
               var metro = new Metro(numero);
-              console.log("Valor: "+metro.valor);
-              console.log("Metro: "+metro.valor+",Km:"+metro.toKm());
-              console.log("Metro: "+metro.valor+",Cm:"+metro.toCm());
-              console.log("Metro: "+metro.valor+",Mm:"+metro.toMm());
-              elemento.innerHTML = metro.toKm() + " Km" + ", " + metro.toCm() + " Cm" + ", " + metro.toMm() + " Mm";
-             break;
-             if(destino != null)
-             {
-               if(destino.startsWith("k"))
-               {
-                 elemento.innerHTML = celsius.toKelvin().toFixed(2) + " Kelvin";
-               }
-               else
-               {
-                 if(destino.startsWith("f"))
-                 {
-                   elemento.innerHTML = celsius.toFarenheit().toFixed(2) + " Farenheit";
-                 }
-               }
-             }
+              if(destino.startsWith("km"))
+                  elemento.innerHTML = metro.toKm().toFixed(5) + " Km";
+              else
+              {
+                if(destino.startsWith("cm"))
+                {
+                    elemento.innerHTML = metro.toCm().toFixed(5) + " Cm";
+                }
+                else
+                {
+                  if(destino.startsWith("mm"))
+                  {
+                    elemento.innerHTML = metro.toMm().toFixed(5) + " Mm."
+                  }
+                  elemento.innerHTML = "Introduzca la unidad de destino(Km|Cm|Mm)";
+                }
+              }
+     	       break;
              case 'cm':
                var centimetro = new Centimetro(numero);
                console.log("Valor: "+centimetro.valor);
