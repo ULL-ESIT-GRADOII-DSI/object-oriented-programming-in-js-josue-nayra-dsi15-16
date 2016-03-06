@@ -7,7 +7,7 @@
     this.valor = valor || 0;
     this.tipo  = tipo  || "Sin tipo";
     /* tipo es opcional. Debería admitir  new Medida("45.2 Km") */
-    /* ademas de new Medida(45.2, "Km") */
+    /* ademas de new Medida(45.2, "Km"  ) */
   }
 
   function Temperatura(valor,tipo)
@@ -23,6 +23,12 @@
     Medida.call(this,valor,tipo);
   }
 
+  function Volumen(valor,tipo)
+  {
+    console.log("Accedo a clase Volumen");
+    Medida.call(this,valor,tipo);
+  }
+
   function Celsius(valor)
   {
     var c_tof = 0;
@@ -31,7 +37,6 @@
     Temperatura.call(this,valor,'c');
     this.toFarenheit = function()
     {
-      console.log("Cambiando a Farenheit...");
       c_tof = (valor * 9/5) + 32;
       return c_tof;
     }
@@ -51,13 +56,11 @@
     Temperatura.call(this,valor,'f');
     this.toCelsius = function()
     {
-      console.log("Cambiando a Celsius...");
       f_toC = (valor - 32) * 5/9;
       return f_toC;
     }
     this.toKelvin = function()
     {
-      console.log("Cambiando a Kelvin...");
       f_toK = (f_toC + 273.15);
       return f_toK;
     }
@@ -72,13 +75,11 @@
     Temperatura.call(this,valor,'k');
     this.toCelsius = function()
     {
-      console.log("Cambiando a Celsius...");
       k_toC = (valor - 273.15);
       return k_toC;
     }
     this.toFarenheit = function()
     {
-      console.log("Cambiando a Farenheit...");
       k_toF = (k_toC * 9/5) + 32;
       return k_toF;
     }
@@ -116,10 +117,6 @@
     {
       return valor * 10;
     }
-    this.toIn = function()
-    {
-      return valor * 0.39370;
-    }
   }
 
   function Metro(valor)
@@ -137,27 +134,24 @@
     {
         return valor * 1000;
     }
-    this.toIn = function()
-    {
-      return this.toCm() * 0.39370;
-    }
   }
 
   function Pulgada(valor){
     Distancia.call(this,valor,'in');
+    this.toIn = function()
+    {
+      return valor * 0.39370;
+    }
     this.toCm = function()
     {
       return valor / 0.39370;
     }
-    this.toM = function()
-    {
-      return toCm / 100;
-    }
+
   }
 
   function Metro3(valor)
   {
-    Distancia.call(this,valor,'cubica');
+    Volumen.call(this,valor,'metro cubico');
     this.toLitro = function()
     {
       return valor * 1000;
@@ -172,6 +166,8 @@
     }
   }
 
+
+
   exports.Temperatura = Temperatura;
   exports.Celsius = Celsius;
   exports.Farenheit = Farenheit;
@@ -181,19 +177,19 @@
   exports.Centimetro = Centimetro;
   exports.KiloMetro = Kilometro;
   exports.Pulgada = Pulgada;
+  exports.Volumen = Volumen;
+  exports.Metro3 = Metro3;
 
-  exports.convertir = function() {
-  console.log("Entre en convertir");
-  var valor     = document.getElementById('convert').value,
-      elemento  = document.getElementById('converted'),
-      /* Extienda la RegeExp a la especificación. use una XRegExp */
-      regexp = /^\s*([-+]?\d+(?:\.\d*)?(?:e[+-]?\d+)?)\s*([kmc]?m(3)?|(in)|k([e]|(e)[l]?|(el)[v]?|(elv)[i]?|(elvi)[n]?)?|[c]([e]|[e][l]?|(el)[s]?|(els)[i]?|(elsi)[u]?|(elsiu)[s]?)?|[f]([a]|[a][r]?|(ar)[e]?|(are)[n]?|(aren)[h]?|(arenh)[e]?|(arenhe)[i]?|(arenhei)[t]?)?)\s*(to)?\s+([c]([e]|[e][l]?|(el)[s]?|(els)[i]?|(elsi)[u]?|(elsiu)[s]?)?|[f]([a]|[a][r]?|(ar)[e]?|(are)[n]?|(aren)[h]?|(arenh)[e]?|(arenhe)[i]?|(arenhei)[t]?)?|k([e]|(e)[l]?|(el)[v]?|(elv)[i]?|(elvi)[n]?)?|[kmc]?m(3)?|l(i(t(r(o(s)?)?)?)?)?|(in))$/i,
-      valor     = valor.match(regexp);
-  //regexp = ^\s*([-+]?\d+(?:\.\d*)?(?:e[+-]?\d+)?)\s*(f(a(r(e(n(h(e(i(t)?)?)?)?)?)?)?)?|(c(e(l(s(i(u(s)?)?)?)?)?)?)|(k(e(l(v(i(n)?)?)?)?)?)|m)\s*(to)?\s+(c(e(l(s(i(u(s)?)?)?)?)?)?|k(e(l(v(i(n)?)?)?)?)?|f(a(r(e(n(h(e(i(t)?)?)?)?)?)?)?)?|([kmc]?[m]))$/i
-  //regexp    = /^\s*([-+]?\d+(?:\.\d*)?(?:e[+-]?\d+)?)\s*([f]([a]|[a][r]?|(ar)[e]?|(are)[n]?|(aren)[h]?|(arenh)[e]?|(arenhe)[i]?|(arenhei)[t]?)?)\s*(to)?\s*([c]([e]|[e][l]?|(el)[s]?|(els)[i]?|(elsi)[u]?|(elsiu)[s]?)?)?$/i,
+    exports.convertir = function() {
+    var valor     = document.getElementById('convert').value,
+        elemento  = document.getElementById('converted'),
+        /* Extienda la RegeExp a la especificación. use una XRegExp */
+        regexp = /^\s*([-+]?\d+(?:\.\d*)?(?:e[+-]?\d+)?)\s*([kmc]?m(3)?|(in)|k([e]|(e)[l]?|(el)[v]?|(elv)[i]?|(elvi)[n]?)?|[c]([e]|[e][l]?|(el)[s]?|(els)[i]?|(elsi)[u]?|(elsiu)[s]?)?|[f]([a]|[a][r]?|(ar)[e]?|(are)[n]?|(aren)[h]?|(arenh)[e]?|(arenhe)[i]?|(arenhei)[t]?)?)\s*(to)?\s+([c]([e]|[e][l]?|(el)[s]?|(els)[i]?|(elsi)[u]?|(elsiu)[s]?)?|[f]([a]|[a][r]?|(ar)[e]?|(are)[n]?|(aren)[h]?|(arenh)[e]?|(arenhe)[i]?|(arenhei)[t]?)?|k([e]|(e)[l]?|(el)[v]?|(elv)[i]?|(elvi)[n]?)?|[kmc]?m(3)?|l(i(t(r(o(s)?)?)?)?)?|(in))$/i,
+        valor     = valor.match(regexp);
+    //regexp = ^\s*([-+]?\d+(?:\.\d*)?(?:e[+-]?\d+)?)\s*(f(a(r(e(n(h(e(i(t)?)?)?)?)?)?)?)?|(c(e(l(s(i(u(s)?)?)?)?)?)?)|(k(e(l(v(i(n)?)?)?)?)?)|m)\s*(to)?\s+(c(e(l(s(i(u(s)?)?)?)?)?)?|k(e(l(v(i(n)?)?)?)?)?|f(a(r(e(n(h(e(i(t)?)?)?)?)?)?)?)?|([kmc]?[m]))$/i
+    //regexp    = /^\s*([-+]?\d+(?:\.\d*)?(?:e[+-]?\d+)?)\s*([f]([a]|[a][r]?|(ar)[e]?|(are)[n]?|(aren)[h]?|(arenh)[e]?|(arenhe)[i]?|(arenhei)[t]?)?)\s*(to)?\s*([c]([e]|[e][l]?|(el)[s]?|(els)[i]?|(elsi)[u]?|(elsiu)[s]?)?)?$/i,
 
     if (valor) {
-      console.log("VALORRR->"+valor);
       var numero = valor[1],
       tipo = valor[2].toLowerCase();
       var destino = null;
@@ -202,8 +198,6 @@
 
       destino = valor[23];
       destino = destino.toLowerCase();
-
-      console.log("Destino:"+destino);
 
       switch (tipo) {
             case 'c':
@@ -256,21 +250,20 @@
 
             case 'm':
               var metro = new Metro(numero);
-              switch (destino) {
-                case 'km':
+
+              if(destino == "km")
                   elemento.innerHTML = metro.toKm() + " Km.";
-                break;
-                case 'cm':
-                  elemento.innerHTML = metro.toCm() + " cm.";
-                break;
-                case 'mm':
-                  elemento.innerHTML = metro.toMm() + " mm.";
-                break;
-                case 'in':
-                  elemento.innerHTML = metro.toIn() + " In.";
-                break;
-                default:
-                  elemento.innerHTML = "Introduzca la unidad de destino correctamente(Km|cm|mm|In)";
+              else
+              {
+                if(destino == "cm")
+                    elemento.innerHTML = metro.toCm() + " cm.";
+                else
+                {
+                  if(destino == "mm")
+                    elemento.innerHTML = metro.toMm() + " mm.";
+                  else
+                    elemento.innerHTML = "Introduzca la unidad de destino correctamente(Km|cm|mm)";
+                }
               }
      	       break;
              case 'cm':
@@ -286,10 +279,10 @@
                     elemento.innerHTML = centimetro.toMm() + " mm.";
                   break;
                   case 'in':
-                    elemento.innerHTML = centimetro.toIn() + " In."
+                    elemento.innerHTML = pulgada.toIn() + " In."
                   break;
                   default:
-                    elemento.innerHTML = "Introduzca la unidad de destino(Km|m|mm|In)";
+                    elemento.innerHTML = "Introduzca la unidad de destino(Km|m|mm)";
                }
             break;
             case 'km':
@@ -311,21 +304,12 @@
              break;
 
             case 'in':
-              var pulgada = new Pulgada(numero);
-              if (destino == "cm")
-                elemento.innerHTML = pulgada.toCm() + " cm";
-              else{
-                if (destino == "m")
-                  elemento.innerHTML = pulgada.toM() + " m";
-                else
-                  elemento.innerHTML = "Introduzca la unidad de destino correctamente(m|cm)";
-              }
-              
+              var pulgada = new Pulgadas(numero);
+              elemento.innerHTML = pulgada.toCm() + " cm";
             break;
 
             case 'm3':
               var metro3 = new Metro3(numero);
-              console.log("Metro->"+metro3.numero);
               if(destino.startsWith("l"))
                   elemento.innerHTML = metro3.toLitro() + " Litros";
               else
@@ -350,5 +334,4 @@
       elemento.innerHTML = "Error! Pruebe algo como '3C to K' o '3C Kelvin'";
 
     }
-
 })(this);
