@@ -180,12 +180,30 @@
           console.log("Metro: "+metro.valor+",Mm:"+metro.toMm());
           elemento.innerHTML = metro.toKm() + " Km" + ", " + metro.toCm() + " Cm" + ", " + metro.toMm() + " Mm";
          break;
+         case 'cm':
+               var centimetro = new Centimetro(numero);
+               console.log("Valor: "+centimetro.valor);
+               console.log("Centimetro: "+centimetro.valor+",Km:"+centimetro.toKm());
+               console.log("Centimetro: "+centimetro.valor+",m:"+centimetro.toM());
+               console.log("Centimetro: "+centimetro.valor+",Mm:"+centimetro.toMm());
+               elemento.innerHTML = centimetro.toKm() + " Km" + ", " + centimetro.toM() + " m" + ", " + centimetro.toMm() + " Mm";
+              break;
+
+            case 'km':
+              var kilometro = new Kilometro(numero);
+              console.log("Valor: "+kilometro.valor);
+              console.log("KiloMetro: "+kilometro.valor+",M:"+kilometro.toM());
+              console.log("KiloMetro: "+kilometro.valor+",Cm:"+kilometro.toCm());
+              console.log("KiloMetro: "+kilometro.valor+",Mm:"+kilometro.toMm());
+              elemento.innerHTML = kilometro.toM() + " m" + ", " + kilometro.toCm() + " Cm" + ", " + kilometro.toMm() + " Mm";
+             break;
 	default:
           /* rellene este código */
       }
     }
     else
       elemento.innerHTML = "";
-  }
+
+    }
 
 })(this);
