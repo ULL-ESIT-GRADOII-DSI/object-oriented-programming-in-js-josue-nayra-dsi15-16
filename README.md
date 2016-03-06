@@ -1,17 +1,21 @@
 # Práctica OOP en JS
 
+# ETSII ULL Grado de Informatica
+
+## Conversor de temperatura en JavaScript de grados Celsius, Fahrenheit y Kelvin.
+
 Este repositorio aloja la práctica de conversión de tipos, realizada con html, css y javascript, usando POO y haciendo uso de la herencia en javascript.
 
+### Enlace al campus de la asignatura
+* [Desarrollo de Sistemas Informáticos](https://campusvirtual.ull.es/my/)
 
-**Repositorio GitHuB**
 
-* [Repositorio]()
+### Repositorios en github.io
 
-**Página de la práctica**
+* [Repositorio de la práctica en la organización](https://github.com/ULL-ESIT-GRADOII-DSI/object-oriented-programming-in-js-josue-nayra-dsi15-16)
+* [Fork del repositorio de la organización](https://github.com/alu0100406122/object-oriented-programming-in-js-josue-nayra-dsi15-16)
+* [Campus Virtual de la asignatura](https://campusvirtual.ull.es/my/)
 
-* [Web]()
+### Despligue de la práctica
 
-**Página del autor**
-
-* [Web Author]()
-
+* [Conversor de Temperatura](http://ull-esit-gradoii-dsi.github.io/object-oriented-programming-in-js-josue-nayra-dsi15-16/)
