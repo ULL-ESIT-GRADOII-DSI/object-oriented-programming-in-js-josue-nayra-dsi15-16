@@ -143,7 +143,7 @@
   exports.Distancia = Distancia;
   exports.Metro = Metro;
   exports.Centimetro = Centimetro;
-//  exports.KiloMetro = Kilometro;
+  exports.KiloMetro = Kilometro;
 
     exports.convertir = function() {
     console.log("Entre en convertir");
@@ -156,9 +156,28 @@
     if (valor) {
       var numero = valor[1],
       tipo = valor[2].toLowerCase();
+      var destino = null;
       numero = parseFloat(numero);
       console.log("Valor: " + numero + ", Tipo: " + tipo);
-
+      if(valor[3] == "to")
+      {
+        console.log("valor[3]:" + valor[3]);
+        if(valor[4] != null)
+        {
+          console.log("valor[4]:" + valor[4]);
+          destino = valor[4];
+        }
+      }
+      else
+      {
+        console.log("else");
+        if(valor[4] != null)
+        {
+          console.log(valor[4]);
+          destino = valor[4];
+        }
+      }
+      console.log("Destino:"+destino);
       switch (tipo) {
             case 'c':
               var celsius = new Celsius(numero);
