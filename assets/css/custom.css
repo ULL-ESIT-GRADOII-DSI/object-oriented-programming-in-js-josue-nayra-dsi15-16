@@ -1,5 +1,7 @@
-html {
-    background-color: #eee;
+html, body {
+    height: 100%;
+    background-color: #DCDCDC;  /* blue */
+    font-family: "Verdana";
 }
 h1{
     text-align: center;
@@ -29,12 +31,7 @@ a:hover{
     color: #660033;
     text-decoration:underline;
 }
-body
-{
-    background-color: #DCDCDC;  /* blue */
-    font-size:large;
-    font-family: "Verdana";
-}
+
 th, td
 {
     text-align: center;
@@ -54,12 +51,7 @@ fieldset{
     background: #E6E6E6;
     border-radius: 30px 30px 30px 30px;
 }
-=======
-    font-size:large; 
-} 
-   
 
->>>>>>> 27354869d1819ae5d6961cbcfea9d85527a1571a
 #converted      /*estilo para el resultado*/
 {
     color: green;
@@ -92,6 +84,7 @@ footer {
     width: 100%;
     padding: 10px;
     background-color: #222;
+    font-size: large;
 }
 
 footer a {
