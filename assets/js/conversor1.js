@@ -142,6 +142,11 @@
     {
       return valor * 0.39370;
     }
+    this.toCm = function()
+    {
+      return valor / 0.39370;
+    }
+    
   }
 
   exports.Temperatura = Temperatura;
@@ -262,6 +267,12 @@
               console.log("KiloMetro: "+kilometro.valor+",Mm:"+kilometro.toMm());
               elemento.innerHTML = kilometro.toM() + " m" + ", " + kilometro.toCm() + " Cm" + ", " + kilometro.toMm() + " Mm";
              break;
+             
+            case 'in':
+              var pulgada = new Pulgadas(numero);
+              elemento.innerHTML = pulgada.toCm() + " cm";
+            break;
+             
     	default:
               /* rellene este código */
               elemento.innerHTML = "La unidad de medida de introducida es desconocida. Intentelo de nuevo";
