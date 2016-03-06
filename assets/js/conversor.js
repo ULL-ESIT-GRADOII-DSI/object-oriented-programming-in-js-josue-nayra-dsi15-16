@@ -33,13 +33,13 @@
     {
       console.log("Cambiando a Farenheit...");
       c_tof = (valor * 9/5) + 32;
-      return (valor * 9/5) + 32;
+      return c_tof;
     }
     this.toKelvin = function()
     {
       console.log("Cambiando a Kelvin...");
       c_tok = (valor + 273.15);
-      return (valor + 273.15);
+      return t_tok;
     }
   }
 
@@ -74,13 +74,13 @@
     {
       console.log("Cambiando a Celsius...");
       k_toC = (valor - 273.15);
-      return (valor - 273.15);
+      return k_toC;
     }
     this.toFarenheit = function()
     {
       console.log("Cambiando a Farenheit...");
       k_toF = (k_toC * 9/5) + 32;
-      return (k_toC * 9/5) + 32;
+      return k_toF;
     }
   }
 
@@ -140,6 +140,10 @@
   exports.Celsius = Celsius;
   exports.Farenheit = Farenheit;
   exports.Kelvin = Kelvin;
+  exports.Distancia = Distancia;
+  exports.Metro = Metro;
+  exports.Centimetro = Centimetro;
+  exports.KiloMetro = Kilometro;
 
     exports.convertir = function() {
     console.log("Entre en convertir");
@@ -198,6 +202,7 @@
              break;
     	default:
               /* rellene este código */
+              elemento.innerHTML = "La unidad de medida de introducida es desconocida. Intentelo de nuevo";
         }
     }
     else
