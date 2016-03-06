@@ -48,12 +48,22 @@ th, td
 }
 
 #recuadro{
-    border-radius: 15px 15px 15px 15px;
-    -moz-border-radius: 15px 15px 15px 15px;
-    -webkit-border-radius: 15px 15px 15px 15px;
+    border-radius: 5px 5px 5px 5px;
+    -moz-border-radius: 5px 5px 5px 5px;
+    -webkit-border-radius: 5px 5px 5px 5px;
     border: 2px solid #f0e8f0;
-    margin-top: 100px;
-    
+    margin-top: 60px;
+    text-align:left;
+}
+
+#izquierda{
+    width: 50%;
+    float:left;
+}
+
+#derecha{
+    width: 50%;
+    float: right;
 }
 
 fieldset{
