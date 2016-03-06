@@ -178,6 +178,7 @@
       console.log("Valor20: " + valor[20]);
 
       destino = valor[21];
+      destino = destino.toLowerCase();
 
       console.log("Destino:"+destino);
 
@@ -232,40 +233,54 @@
 
             case 'm':
               var metro = new Metro(numero);
-              if(destino.startsWith("km"))
-                  elemento.innerHTML = metro.toKm().toFixed(5) + " Km";
+              if(destino == "km")
+                  elemento.innerHTML = metro.toKm() + " Km.";
               else
               {
-                if(destino.startsWith("cm"))
-                {
-                    elemento.innerHTML = metro.toCm().toFixed(5) + " Cm";
-                }
+                if(destino == "cm")
+                    elemento.innerHTML = metro.toCm() + " cm.";
                 else
                 {
-                  if(destino.startsWith("mm"))
-                  {
-                    elemento.innerHTML = metro.toMm().toFixed(5) + " Mm."
-                  }
-                  elemento.innerHTML = "Introduzca la unidad de destino(Km|Cm|Mm)";
+                  if(destino == "mm")
+                    elemento.innerHTML = metro.toMm() + " mm.";
+                  else
+                    elemento.innerHTML = "Introduzca la unidad de destino(Km|cm|mm)";
                 }
               }
      	       break;
              case 'cm':
                var centimetro = new Centimetro(numero);
-               console.log("Valor: "+centimetro.valor);
-               console.log("Centimetro: "+centimetro.valor+",Km:"+centimetro.toKm());
-               console.log("Centimetro: "+centimetro.valor+",m:"+centimetro.toM());
-               console.log("Centimetro: "+centimetro.valor+",Mm:"+centimetro.toMm());
-               elemento.innerHTML = centimetro.toKm() + " Km" + ", " + centimetro.toM() + " m" + ", " + centimetro.toMm() + " Mm";
-              break;
-
+               if(destino == "km")
+                   elemento.innerHTML = centimetro.toKm() + " Km.";
+               else
+               {
+                 if(destino == "m")
+                     elemento.innerHTML = centimetro.toM() + " m.";
+                 else
+                 {
+                   if(destino == "mm")
+                     elemento.innerHTML = centimetro.toMm() + " mm.";
+                   else
+                     elemento.innerHTML = "Introduzca la unidad de destino(Km|m|mm)";
+                 }
+               }
+            break;
             case 'km':
               var kilometro = new Kilometro(numero);
-              console.log("Valor: "+kilometro.valor);
-              console.log("KiloMetro: "+kilometro.valor+",M:"+kilometro.toM());
-              console.log("KiloMetro: "+kilometro.valor+",Cm:"+kilometro.toCm());
-              console.log("KiloMetro: "+kilometro.valor+",Mm:"+kilometro.toMm());
-              elemento.innerHTML = kilometro.toM() + " m" + ", " + kilometro.toCm() + " Cm" + ", " + kilometro.toMm() + " Mm";
+              if(destino == "m")
+                  elemento.innerHTML = kilometro.toM() + " m";
+              else
+              {
+                if(destino == "cm")
+                    elemento.innerHTML = kilometro.toCm() + " cm";
+                else
+                {
+                  if(destino == "mm")
+                    elemento.innerHTML = kilometro.toMm() + " mm.";
+                  else
+                    elemento.innerHTML = "Introduzca la unidad de destino(Km|m|mm)";
+                }
+              }
              break;
              
             case 'in':
@@ -274,7 +289,6 @@
             break;
              
     	default:
-              /* rellene este código */
               elemento.innerHTML = "La unidad de medida de introducida es desconocida. Intentelo de nuevo";
         }
     }
