@@ -1,5 +1,7 @@
-html {
-    background-color: #eee;
+html, body {
+    height: 100%;
+    background-color: #DCDCDC;  /* blue */
+    font-family: "Verdana";
 }
 h1{
     text-align: center;
@@ -29,12 +31,7 @@ a:hover{
     color: #660033;
     text-decoration:underline;
 }
-body
-{
-    background-color: #DCDCDC;  /* blue */
-    font-size:large;
-    font-family: "Verdana";
-}
+
 th, td
 { 
     text-align: center;
@@ -43,7 +40,6 @@ th, td
     font-size:large; 
 } 
    
-
 #converted      /*estilo para el resultado*/
 { 
     color: green; 
@@ -76,6 +72,7 @@ footer {
     width: 100%;
     padding: 10px;
     background-color: #222;
+    font-size: large;
 }
 
 footer a {

@@ -53,13 +53,13 @@
     {
       console.log("Cambiando a Celsius...");
       f_toC = (valor - 32) * 5/9;
-      return f_toC;
+      return (valor - 32) * 5/9;
     }
     this.toKelvin = function()
     {
       console.log("Cambiando a Kelvin...");
       f_toK = (f_toC + 273.15);
-      return f_toK;
+      return (f_toC + 273.15);
     }
 
   }
@@ -116,6 +116,7 @@
     {
       return valor * 10;
     }
+  }
 
   function Metro(valor)
   {
@@ -156,7 +157,8 @@
 
       switch (tipo) {
         case 'c':
-
+          var celsius = new Celsius(numero);
+          elemento.innerHTML = celsius.toFarenheit().toFixed(2) + "Fahrenheit";
           break;
         case 'f':
           var farenheit = new Farenheit(numero);
