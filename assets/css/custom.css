@@ -37,7 +37,6 @@ th, td
     text-align: center;
     vertical-align: top;
     text-align: right;
-<<<<<<< HEAD
     font-size:large;
 }
 .pie{
@@ -47,6 +46,16 @@ th, td
     font-family:Century Gothic,CenturyGothic,AppleGothic,sans-serif;
     font-size:22px;
 }
+
+#recuadro{
+    border-radius: 15px 15px 15px 15px;
+    -moz-border-radius: 15px 15px 15px 15px;
+    -webkit-border-radius: 15px 15px 15px 15px;
+    border: 2px solid #f0e8f0;
+    margin-top: 100px;
+    
+}
+
 fieldset{
     background: #E6E6E6;
     border-radius: 30px 30px 30px 30px;
