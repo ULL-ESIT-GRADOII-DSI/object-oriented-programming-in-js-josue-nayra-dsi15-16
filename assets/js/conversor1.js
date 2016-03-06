@@ -39,7 +39,7 @@
     {
       console.log("Cambiando a Kelvin...");
       c_tok = (valor + 273.15);
-      return t_tok;
+      return c_tok;
     }
   }
 
@@ -150,7 +150,7 @@
     var valor     = document.getElementById('convert').value,
         elemento  = document.getElementById('converted'),
         /* Extienda la RegeExp a la especificación. use una XRegExp */
-        regexp    = /^\s*([-+]?\d+(?:\.\d+)?(?:e[+-]?\d+)?)\s*([a-z,A-Z]+)\s*$/i,
+        regexp    = /^\s*([-+]?\d+(?:\.\d+)?(?:e[+-]?\d+)?)\s*([a-z,A-Z]+)\s*(to)?\s*([a-z,A-Z]*)\s*$/i,
         valor     = valor.match(regexp);
 
     if (valor) {
@@ -161,7 +161,8 @@
 
       switch (tipo) {
             case 'c':
-
+              var celsius = new Celsius(numero);
+     	        elemento.innerHTML = celsius.toFarenheit().toFixed(2) + " Fahrenheit" + ", " + celsius.toKelvin().toFixed() + " Kelvin";
               break;
             case 'f':
               var farenheit = new Farenheit(numero);
