@@ -150,79 +150,72 @@
     var valor     = document.getElementById('convert').value,
         elemento  = document.getElementById('converted'),
         /* Extienda la RegeExp a la especificación. use una XRegExp */
-        regexp    = /^\s*([-+]?\d+(?:\.\d+)?(?:e[+-]?\d+)?)\s*([a-z,A-Z]+)\s*(to)?\s*([a-z,A-Z]*)\s*$/i,
+        regexp = /^\s*([-+]?\d+(?:\.\d*)?(?:e[+-]?\d+)?)\s*([kmc]?m|k([e]|(e)[l]?|(el)[v]?|(elv)[i]?|(elvi)[n]?)?|[c]([e]|[e][l]?|(el)[s]?|(els)[i]?|(elsi)[u]?|(elsiu)[s]?)?|[f]([a]|[a][r]?|(ar)[e]?|(are)[n]?|(aren)[h]?|(arenh)[e]?|(arenhe)[i]?|(arenhei)[t]?)?)\s*(to)?\s+([c]([e]|[e][l]?|(el)[s]?|(els)[i]?|(elsi)[u]?|(elsiu)[s]?)?|[f]([a]|[a][r]?|(ar)[e]?|(are)[n]?|(aren)[h]?|(arenh)[e]?|(arenhe)[i]?|(arenhei)[t]?)?|k([e]|(e)[l]?|(el)[v]?|(elv)[i]?|(elvi)[n]?)?|[kmc]?m)$/i,
         valor     = valor.match(regexp);
+    //regexp = ^\s*([-+]?\d+(?:\.\d*)?(?:e[+-]?\d+)?)\s*(f(a(r(e(n(h(e(i(t)?)?)?)?)?)?)?)?|(c(e(l(s(i(u(s)?)?)?)?)?)?)|(k(e(l(v(i(n)?)?)?)?)?)|m)\s*(to)?\s+(c(e(l(s(i(u(s)?)?)?)?)?)?|k(e(l(v(i(n)?)?)?)?)?|f(a(r(e(n(h(e(i(t)?)?)?)?)?)?)?)?|([kmc]?[m]))$/i
+    //regexp    = /^\s*([-+]?\d+(?:\.\d*)?(?:e[+-]?\d+)?)\s*([f]([a]|[a][r]?|(ar)[e]?|(are)[n]?|(aren)[h]?|(arenh)[e]?|(arenhe)[i]?|(arenhei)[t]?)?)\s*(to)?\s*([c]([e]|[e][l]?|(el)[s]?|(els)[i]?|(elsi)[u]?|(elsiu)[s]?)?)?$/i,
 
     if (valor) {
+      console.log("VALORRR->"+valor);
       var numero = valor[1],
       tipo = valor[2].toLowerCase();
       var destino = null;
       numero = parseFloat(numero);
       console.log("Valor: " + numero + ", Tipo: " + tipo);
-      if(valor[3] == "to")
-      {
-        console.log("valor[3]:" + valor[3]);
-        if(valor[4] != null)
-        {
-          console.log("valor[4]:" + valor[4]);
-          destino = valor[4];
-        }
-      }
-      else
-      {
-        console.log("else");
-        if(valor[4] != null)
-        {
-          console.log(valor[4]);
-          destino = valor[4];
-        }
-      }
+      console.log("Valor20: " + valor[20]);
+
+      destino = valor[21];
+
       console.log("Destino:"+destino);
+
       switch (tipo) {
             case 'c':
               var celsius = new Celsius(numero);
-              if(destino == "k")
-              {
-                elemento.innerHTML = celsius.toKelvin().toFixed(2) + " Kelvin";
-              }
+
+              if(destino.startsWith("k"))
+                  elemento.innerHTML = celsius.toKelvin().toFixed(2) + " Kelvin";
               else
               {
-                if(destino == "f")
-                {
+                if(destino.startsWith("f"))
                   elemento.innerHTML = celsius.toFarenheit().toFixed(2) + " Farenheit";
-                }
                 else
                 {
-                  elemento.innerHTML = "Introduzca la unidad de destino";
+                  elemento.innerHTML = "Introduzca la unidad de destino(Farenheit|Kelvin)";
                 }
               }
 
               break;
             case 'f':
               var farenheit = new Farenheit(numero);
-              if(destino == "c")
-              {
+
+              if(destino.startsWith("c"))
                   elemento.innerHTML = farenheit.toCelsius().toFixed(2) + " Celsius";
-              }
               else
               {
-                if(destino == "k")
-                {
+                if(destino.startsWith("k"))
                     elemento.innerHTML = farenheit.toKelvin().toFixed(2) + " Kelvin";
-                }
                 else
                 {
-                  elemento.innerHTML = "Introduzca la unidad de destino(Celsius|Kelvin)";
+                    elemento.innerHTML = "Introduzca la unidad de destino(Celsius|Kelvin)";
                 }
               }
               break;
             case 'k':
     	       var kelvin = new Kelvin(numero);
-             console.log("Valor: "+kelvin.valor);
-             console.log("Kelvin: "+kelvin.valor+",Celsius:"+kelvin.toCelsius());
-             console.log("Kelvin: "+kelvin.valor+",Farenheit:"+kelvin.toFarenheit());
-     	       elemento.innerHTML = kelvin.toCelsius() + " Celsius" + ", " + kelvin.toFarenheit() + " Farenheit";
-    	        break;
+             if(destino.startsWith("c"))
+                 elemento.innerHTML = kelvin.toCelsius().toFixed(2) + " Celsius";
+             else
+             {
+               if(destino.startsWith("f"))
+               {
+                   elemento.innerHTML = kelvin.toFarenheit().toFixed(2) + " Farenheit";
+               }
+               else
+               {
+                 elemento.innerHTML = "Introduzca la unidad de destino(Celsius|Kelvin)";
+               }
+             }
+    	       break;
 
             case 'm':
               var metro = new Metro(numero);
@@ -232,6 +225,20 @@
               console.log("Metro: "+metro.valor+",Mm:"+metro.toMm());
               elemento.innerHTML = metro.toKm() + " Km" + ", " + metro.toCm() + " Cm" + ", " + metro.toMm() + " Mm";
              break;
+             if(destino != null)
+             {
+               if(destino.startsWith("k"))
+               {
+                 elemento.innerHTML = celsius.toKelvin().toFixed(2) + " Kelvin";
+               }
+               else
+               {
+                 if(destino.startsWith("f"))
+                 {
+                   elemento.innerHTML = celsius.toFarenheit().toFixed(2) + " Farenheit";
+                 }
+               }
+             }
              case 'cm':
                var centimetro = new Centimetro(numero);
                console.log("Valor: "+centimetro.valor);
@@ -255,7 +262,7 @@
         }
     }
     else
-      elemento.innerHTML = "";
+      elemento.innerHTML = "Error! Pruebe algo como 3C to K";
 
     }
 
