@@ -181,7 +181,6 @@
       switch (tipo) {
             case 'c':
               var celsius = new Celsius(numero);
-           
               if(destino == "k")
               {
                 elemento.innerHTML = celsius.toKelvin().toFixed(2) + " Kelvin";
@@ -194,15 +193,28 @@
                 }
                 else
                 {
-                  elemento.innerHTML = "Introduzca la unidad de destino";  
+                  elemento.innerHTML = "Introduzca la unidad de destino";
                 }
               }
 
-     	        //elemento.innerHTML = celsius.toFarenheit().toFixed(2) + " Fahrenheit" + ", " + celsius.toKelvin().toFixed() + " Kelvin";
               break;
             case 'f':
               var farenheit = new Farenheit(numero);
-     	        elemento.innerHTML = farenheit.toCelsius().toFixed(2) + " Celsius" + ", " + farenheit.toKelvin().toFixed() + " Kelvin";
+              if(destino == "c")
+              {
+                  elemento.innerHTML = farenheit.toCelsius().toFixed(2) + " Celsius";
+              }
+              else
+              {
+                if(destino == "k")
+                {
+                    elemento.innerHTML = farenheit.toKelvin().toFixed(2) + " Kelvin";
+                }
+                else
+                {
+                  elemento.innerHTML = "Introduzca la unidad de destino(Celsius|Kelvin)";
+                }
+              }
               break;
             case 'k':
     	       var kelvin = new Kelvin(numero);
