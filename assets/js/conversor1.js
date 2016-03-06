@@ -120,20 +120,28 @@
 
   function Metro(valor)
   {
-      Distancia.call(this,valor,'m');
-      this.toKm = function()
-      {
-          return valor / 1000;
-      }
-      this.toCm = function()
-      {
-          return valor * 100;
-      }
-      this.toMm = function()
-      {
-          return valor * 1000;
-      }
+    Distancia.call(this,valor,'m');
+    this.toKm = function()
+    {
+        return valor / 1000;
+    }
+    this.toCm = function()
+    {
+        return valor * 100;
+    }
+    this.toMm = function()
+    {
+        return valor * 1000;
+    }
 
+  }
+
+  function Pulgadas(valor){
+    Distancia.call(this,valor,'in');
+    this.toIn = function()
+    {
+      return valor * 0.39370;
+    }
   }
 
   exports.Temperatura = Temperatura;
