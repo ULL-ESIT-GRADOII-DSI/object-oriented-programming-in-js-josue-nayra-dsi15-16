@@ -186,6 +186,14 @@
         valor     = valor.match(regexp);
     //regexp = ^\s*([-+]?\d+(?:\.\d*)?(?:e[+-]?\d+)?)\s*(f(a(r(e(n(h(e(i(t)?)?)?)?)?)?)?)?|(c(e(l(s(i(u(s)?)?)?)?)?)?)|(k(e(l(v(i(n)?)?)?)?)?)|m)\s*(to)?\s+(c(e(l(s(i(u(s)?)?)?)?)?)?|k(e(l(v(i(n)?)?)?)?)?|f(a(r(e(n(h(e(i(t)?)?)?)?)?)?)?)?|([kmc]?[m]))$/i
     //regexp    = /^\s*([-+]?\d+(?:\.\d*)?(?:e[+-]?\d+)?)\s*([f]([a]|[a][r]?|(ar)[e]?|(are)[n]?|(aren)[h]?|(arenh)[e]?|(arenhe)[i]?|(arenhei)[t]?)?)\s*(to)?\s*([c]([e]|[e][l]?|(el)[s]?|(els)[i]?|(elsi)[u]?|(elsiu)[s]?)?)?$/i,
+    if(valor)
+    {
+      var medida = new Medida(valor);
+    }
+    else
+    {
+      elemento.innerHTML = "Error! Pruebe algo como '3C to K' o '3C Kelvin'";
+    }
 
     if (valor) {
       console.log("VALORRR->"+valor);
@@ -285,20 +293,6 @@
                   default:
                     elemento.innerHTML = "Introduzca la unidad de destino(Km|m|mm)";
                }
-               /*if(destino == "km")
-                   elemento.innerHTML = centimetro.toKm() + " Km.";
-               else
-               {
-                 if(destino == "m")
-                     elemento.innerHTML = centimetro.toM() + " m.";
-                 else
-                 {
-                   if(destino == "mm")
-                     elemento.innerHTML = centimetro.toMm() + " mm.";
-                   else
-                     elemento.innerHTML = "Introduzca la unidad de destino correctamente(Km|m|mm)";
-                 }
-               }*/
             break;
             case 'km':
               var kilometro = new Kilometro(numero);
@@ -350,5 +344,4 @@
       elemento.innerHTML = "Error! Pruebe algo como '3C to K' o '3C Kelvin'";
 
     }
-
 })(this);
