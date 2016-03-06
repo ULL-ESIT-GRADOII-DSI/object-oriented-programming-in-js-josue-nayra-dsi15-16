@@ -23,6 +23,12 @@
     Medida.call(this,valor,tipo);
   }
 
+  function Volumen(valor,tipo)
+  {
+    console.log("Accedo a clase Volumen");
+    Medida.call(this,valor,tipo);
+  }
+
   function Celsius(valor)
   {
     var c_tof = 0;
@@ -31,7 +37,6 @@
     Temperatura.call(this,valor,'c');
     this.toFarenheit = function()
     {
-      console.log("Cambiando a Farenheit...");
       c_tof = (valor * 9/5) + 32;
       return c_tof;
     }
@@ -51,13 +56,11 @@
     Temperatura.call(this,valor,'f');
     this.toCelsius = function()
     {
-      console.log("Cambiando a Celsius...");
       f_toC = (valor - 32) * 5/9;
       return f_toC;
     }
     this.toKelvin = function()
     {
-      console.log("Cambiando a Kelvin...");
       f_toK = (f_toC + 273.15);
       return f_toK;
     }
@@ -72,13 +75,11 @@
     Temperatura.call(this,valor,'k');
     this.toCelsius = function()
     {
-      console.log("Cambiando a Celsius...");
       k_toC = (valor - 273.15);
       return k_toC;
     }
     this.toFarenheit = function()
     {
-      console.log("Cambiando a Farenheit...");
       k_toF = (k_toC * 9/5) + 32;
       return k_toF;
     }
@@ -150,7 +151,7 @@
 
   function Metro3(valor)
   {
-    Distancia.call(this,valor,'cubica');
+    Volumen.call(this,valor,'metro cubico');
     this.toLitro = function()
     {
       return valor * 1000;
@@ -176,10 +177,10 @@
   exports.Centimetro = Centimetro;
   exports.KiloMetro = Kilometro;
   exports.Pulgada = Pulgada;
+  exports.Volumen = Volumen;
   exports.Metro3 = Metro3;
 
     exports.convertir = function() {
-    console.log("Entre en convertir");
     var valor     = document.getElementById('convert').value,
         elemento  = document.getElementById('converted'),
         /* Extienda la RegeExp a la especificación. use una XRegExp */
@@ -189,7 +190,6 @@
     //regexp    = /^\s*([-+]?\d+(?:\.\d*)?(?:e[+-]?\d+)?)\s*([f]([a]|[a][r]?|(ar)[e]?|(are)[n]?|(aren)[h]?|(arenh)[e]?|(arenhe)[i]?|(arenhei)[t]?)?)\s*(to)?\s*([c]([e]|[e][l]?|(el)[s]?|(els)[i]?|(elsi)[u]?|(elsiu)[s]?)?)?$/i,
 
     if (valor) {
-      console.log("VALORRR->"+valor);
       var numero = valor[1],
       tipo = valor[2].toLowerCase();
       var destino = null;
@@ -198,8 +198,6 @@
 
       destino = valor[23];
       destino = destino.toLowerCase();
-
-      console.log("Destino:"+destino);
 
       switch (tipo) {
             case 'c':
@@ -312,7 +310,6 @@
 
             case 'm3':
               var metro3 = new Metro3(numero);
-              console.log("Metro->"+metro3.numero);
               if(destino.startsWith("l"))
                   elemento.innerHTML = metro3.toLitro() + " Litros";
               else
