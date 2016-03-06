@@ -143,7 +143,7 @@
   exports.Distancia = Distancia;
   exports.Metro = Metro;
   exports.Centimetro = Centimetro;
-//  exports.KiloMetro = Kilometro;
+  exports.KiloMetro = Kilometro;
 
     exports.convertir = function() {
     console.log("Entre en convertir");
