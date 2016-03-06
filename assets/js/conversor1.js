@@ -16,14 +16,14 @@
     Medida.call(this,valor,tipo);
     /* tipo es opcional. Debería admitir new Medida("45.2 F") */
   }
-  Temperatura.prototype = new Medida();
+  //Temperatura.prototype = new Medida();
 
   function Distancia(valor,tipo)
   {
     console.log("Accedo a clase Distancia");
     Medida.call(this,valor,tipo);
   }
-  Distancia.prototype = new Medida();
+  //Distancia.prototype = new Medida();
 
   function Celsius(valor)
   {
@@ -44,7 +44,7 @@
       return c_tok;
     }
   }
-  Celsius.prototype = new Temperatura();
+  //Celsius.prototype = new Temperatura();
 
   function Farenheit(valor)
   {
@@ -66,7 +66,7 @@
     }
 
   }
-  Farenheit.prototype = Temperatura();
+  //Farenheit.prototype = Temperatura();
 
   function Kelvin(valor)
   {
@@ -87,7 +87,7 @@
       return k_toF;
     }
   }
-  Kelvin.prototype = new Temperatura();
+  //Kelvin.prototype = new Temperatura();
 
   function Kilometro(valor)
   {
@@ -105,7 +105,7 @@
         return valor * 1000000;
     }
   }
-  Distancia.prototype = new Distancia();
+  //Distancia.prototype = new Distancia();
 
   function Centimetro(valor)
   {
@@ -122,8 +122,12 @@
     {
       return valor * 10;
     }
+    this.toIn = function()
+    {
+      return valor * 0.39370;
+    }
   }
-  Centimetro.prototype = new Distancia();
+  //Centimetro.prototype = new Distancia();
 
   function Metro(valor)
   {
@@ -140,22 +144,26 @@
     {
         return valor * 1000;
     }
+    this.toIn = function()
+    {
+      return this.toCm() * 0.39370;
+    }
   }
-  Metro.prototype = new Distancia();
+  //Metro.prototype = new Distancia();
 
   function Pulgada(valor){
     Distancia.call(this,valor,'in');
-    this.toIn = function()
-    {
-      return valor * 0.39370;
-    }
     this.toCm = function()
     {
       return valor / 0.39370;
     }
+    this.toM = function()
+    {
+      return toCm / 100;
+    }
     
   }
-  Pulgada.protype = new Distancia();
+  //Pulgada.protype = new Distancia();
 
   exports.Temperatura = Temperatura;
   exports.Celsius = Celsius;
@@ -167,15 +175,15 @@
   exports.KiloMetro = Kilometro;
   exports.Pulgada = Pulgada;
   
-    exports.convertir = function() {
-    console.log("Entre en convertir");
-    var valor     = document.getElementById('convert').value,
-        elemento  = document.getElementById('converted'),
-        /* Extienda la RegeExp a la especificación. use una XRegExp */
-        regexp = /^\s*([-+]?\d+(?:\.\d*)?(?:e[+-]?\d+)?)\s*([kmc]?m|k([e]|(e)[l]?|(el)[v]?|(elv)[i]?|(elvi)[n]?)?|[c]([e]|[e][l]?|(el)[s]?|(els)[i]?|(elsi)[u]?|(elsiu)[s]?)?|[f]([a]|[a][r]?|(ar)[e]?|(are)[n]?|(aren)[h]?|(arenh)[e]?|(arenhe)[i]?|(arenhei)[t]?)?)\s*(to)?\s+([c]([e]|[e][l]?|(el)[s]?|(els)[i]?|(elsi)[u]?|(elsiu)[s]?)?|[f]([a]|[a][r]?|(ar)[e]?|(are)[n]?|(aren)[h]?|(arenh)[e]?|(arenhe)[i]?|(arenhei)[t]?)?|k([e]|(e)[l]?|(el)[v]?|(elv)[i]?|(elvi)[n]?)?|[kmc]?m)$/i,
-        valor     = valor.match(regexp);
-    //regexp = ^\s*([-+]?\d+(?:\.\d*)?(?:e[+-]?\d+)?)\s*(f(a(r(e(n(h(e(i(t)?)?)?)?)?)?)?)?|(c(e(l(s(i(u(s)?)?)?)?)?)?)|(k(e(l(v(i(n)?)?)?)?)?)|m)\s*(to)?\s+(c(e(l(s(i(u(s)?)?)?)?)?)?|k(e(l(v(i(n)?)?)?)?)?|f(a(r(e(n(h(e(i(t)?)?)?)?)?)?)?)?|([kmc]?[m]))$/i
-    //regexp    = /^\s*([-+]?\d+(?:\.\d*)?(?:e[+-]?\d+)?)\s*([f]([a]|[a][r]?|(ar)[e]?|(are)[n]?|(aren)[h]?|(arenh)[e]?|(arenhe)[i]?|(arenhei)[t]?)?)\s*(to)?\s*([c]([e]|[e][l]?|(el)[s]?|(els)[i]?|(elsi)[u]?|(elsiu)[s]?)?)?$/i,
+  exports.convertir = function() {
+  console.log("Entre en convertir");
+  var valor     = document.getElementById('convert').value,
+      elemento  = document.getElementById('converted'),
+      /* Extienda la RegeExp a la especificación. use una XRegExp */
+      regexp = /^\s*([-+]?\d+(?:\.\d*)?(?:e[+-]?\d+)?)\s*([kmc]?m|(in)|k([e]|(e)[l]?|(el)[v]?|(elv)[i]?|(elvi)[n]?)?|[c]([e]|[e][l]?|(el)[s]?|(els)[i]?|(elsi)[u]?|(elsiu)[s]?)?|[f]([a]|[a][r]?|(ar)[e]?|(are)[n]?|(aren)[h]?|(arenh)[e]?|(arenhe)[i]?|(arenhei)[t]?)?)\s*(to)?\s+([c]([e]|[e][l]?|(el)[s]?|(els)[i]?|(elsi)[u]?|(elsiu)[s]?)?|[f]([a]|[a][r]?|(ar)[e]?|(are)[n]?|(aren)[h]?|(arenh)[e]?|(arenhe)[i]?|(arenhei)[t]?)?|k([e]|(e)[l]?|(el)[v]?|(elv)[i]?|(elvi)[n]?)?|[kmc]?m|(in))$/i,
+      valor     = valor.match(regexp);
+  //regexp = ^\s*([-+]?\d+(?:\.\d*)?(?:e[+-]?\d+)?)\s*(f(a(r(e(n(h(e(i(t)?)?)?)?)?)?)?)?|(c(e(l(s(i(u(s)?)?)?)?)?)?)|(k(e(l(v(i(n)?)?)?)?)?)|m)\s*(to)?\s+(c(e(l(s(i(u(s)?)?)?)?)?)?|k(e(l(v(i(n)?)?)?)?)?|f(a(r(e(n(h(e(i(t)?)?)?)?)?)?)?)?|([kmc]?[m]))$/i
+  //regexp    = /^\s*([-+]?\d+(?:\.\d*)?(?:e[+-]?\d+)?)\s*([f]([a]|[a][r]?|(ar)[e]?|(are)[n]?|(aren)[h]?|(arenh)[e]?|(arenhe)[i]?|(arenhei)[t]?)?)\s*(to)?\s*([c]([e]|[e][l]?|(el)[s]?|(els)[i]?|(elsi)[u]?|(elsiu)[s]?)?)?$/i,
 
     if (valor) {
       console.log("VALORRR->"+valor);
@@ -184,9 +192,9 @@
       var destino = null;
       numero = parseFloat(numero);
       console.log("Valor: " + numero + ", Tipo: " + tipo);
-      console.log("Valor20: " + valor[20]);
+      console.log("Valor20: " + valor[22]);
 
-      destino = valor[21];
+      destino = valor[22];
       destino = destino.toLowerCase();
 
       console.log("Destino:"+destino);
@@ -242,8 +250,23 @@
 
             case 'm':
               var metro = new Metro(numero);
-
-              if(destino == "km")
+              switch (destino) {
+                case 'km':
+                  elemento.innerHTML = metro.toKm() + " Km.";
+                break;
+                case 'cm':
+                  elemento.innerHTML = metro.toCm() + " cm.";
+                break;
+                case 'mm':
+                  elemento.innerHTML = metro.toMm() + " mm.";
+                break;
+                case 'in':
+                  elemento.innerHTML = metro.toIn() + " In.";
+                break;
+                default:
+                  elemento.innerHTML = "Introduzca la unidad de destino correctamente(Km|cm|mm|In)";
+              }
+              /*if(destino == "km")
                   elemento.innerHTML = metro.toKm() + " Km.";
               else
               {
@@ -256,7 +279,7 @@
                   else
                     elemento.innerHTML = "Introduzca la unidad de destino correctamente(Km|cm|mm)";
                 }
-              }
+              }*/
      	       break;
              case 'cm':
                var centimetro = new Centimetro(numero);
@@ -271,10 +294,10 @@
                     elemento.innerHTML = centimetro.toMm() + " mm.";
                   break;
                   case 'in':
-                    elemento.innerHTML = pulgada.toIn() + " In."
+                    elemento.innerHTML = centimetro.toIn() + " In."
                   break;
                   default:
-                    elemento.innerHTML = "Introduzca la unidad de destino(Km|m|mm)";
+                    elemento.innerHTML = "Introduzca la unidad de destino(Km|m|mm|In)";
                }
                /*if(destino == "km")
                    elemento.innerHTML = centimetro.toKm() + " Km.";
@@ -310,8 +333,16 @@
              break;
              
             case 'in':
-              var pulgada = new Pulgadas(numero);
-              elemento.innerHTML = pulgada.toCm() + " cm";
+              var pulgada = new Pulgada(numero);
+              if (destino == "cm")
+                elemento.innerHTML = pulgada.toCm() + " cm";
+              else{
+                if (destino == "m")
+                  elemento.innerHTML = pulgada.toM() + " m";
+                else
+                  elemento.innerHTML = "Introduzca la unidad de destino correctamente(m|cm)";
+              }
+              
             break;
              
     	default:
