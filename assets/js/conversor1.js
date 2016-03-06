@@ -220,32 +220,37 @@
             case 'm':
               var metro = new Metro(numero);
               if(destino.startsWith("km"))
-                  elemento.innerHTML = metro.toKm().toFixed(5) + " Km";
+                  elemento.innerHTML = metro.toKm() + " Km";
               else
               {
                 if(destino.startsWith("cm"))
-                {
-                    elemento.innerHTML = metro.toCm().toFixed(5) + " Cm";
-                }
+                    elemento.innerHTML = metro.toCm() + " cm";
                 else
                 {
                   if(destino.startsWith("mm"))
-                  {
-                    elemento.innerHTML = metro.toMm().toFixed(5) + " Mm."
-                  }
-                  elemento.innerHTML = "Introduzca la unidad de destino(Km|Cm|Mm)";
+                    elemento.innerHTML = metro.toMm()) + " mm."
+                  else
+                    elemento.innerHTML = "Introduzca la unidad de destino(Km|cm|mm)";
                 }
               }
      	       break;
              case 'cm':
                var centimetro = new Centimetro(numero);
-               console.log("Valor: "+centimetro.valor);
-               console.log("Centimetro: "+centimetro.valor+",Km:"+centimetro.toKm());
-               console.log("Centimetro: "+centimetro.valor+",m:"+centimetro.toM());
-               console.log("Centimetro: "+centimetro.valor+",Mm:"+centimetro.toMm());
-               elemento.innerHTML = centimetro.toKm() + " Km" + ", " + centimetro.toM() + " m" + ", " + centimetro.toMm() + " Mm";
-              break;
-
+               if(destino == "km")
+                   elemento.innerHTML = centimetro.toKm() + " Km";
+               else
+               {
+                 if(destino == "m")
+                     elemento.innerHTML = centimetro.toM() + " m";
+                 else
+                 {
+                   if(destino == "mm")
+                     elemento.innerHTML = centimetro.toMm() + " mm.";
+                   else
+                     elemento.innerHTML = "Introduzca la unidad de destino(Km|m|mm)";
+                 }
+               }
+            break;
             case 'km':
               var kilometro = new Kilometro(numero);
               console.log("Valor: "+kilometro.valor);
