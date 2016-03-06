@@ -149,6 +149,11 @@
     {
       return valor * 0.39370;
     }
+    this.toCm = function()
+    {
+      return valor / 0.39370;
+    }
+    
   }
   Pulgada.protype = new Distancia();
 
@@ -287,6 +292,12 @@
                 }
               }
              break;
+             
+            case 'in':
+              var pulgada = new Pulgadas(numero);
+              elemento.innerHTML = pulgada.toCm() + " cm";
+            break;
+             
     	default:
               elemento.innerHTML = "La unidad de medida de introducida es desconocida. Intentelo de nuevo";
         }
