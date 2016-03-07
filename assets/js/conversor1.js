@@ -9,7 +9,8 @@
     /* tipo es opcional. Debería admitir  new Medida("45.2 Km") */
     /* ademas de new Medida(45.2, "Km"  ) */
   }
-
+  
+  
   function Temperatura(valor,tipo)
   {
     console.log("Accedo a clase Temperatura");
