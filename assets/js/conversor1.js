@@ -186,9 +186,7 @@
         /* Extienda la RegeExp a la especificación. use una XRegExp */
         regexp = /^\s*([-+]?\d+(?:\.\d*)?(?:e[+-]?\d+)?)\s*([kmc]?m(3)?|(in)|k([e]|(e)[l]?|(el)[v]?|(elv)[i]?|(elvi)[n]?)?|[c]([e]|[e][l]?|(el)[s]?|(els)[i]?|(elsi)[u]?|(elsiu)[s]?)?|[f]([a]|[a][r]?|(ar)[e]?|(are)[n]?|(aren)[h]?|(arenh)[e]?|(arenhe)[i]?|(arenhei)[t]?)?)\s*(to)?\s+([c]([e]|[e][l]?|(el)[s]?|(els)[i]?|(elsi)[u]?|(elsiu)[s]?)?|[f]([a]|[a][r]?|(ar)[e]?|(are)[n]?|(aren)[h]?|(arenh)[e]?|(arenhe)[i]?|(arenhei)[t]?)?|k([e]|(e)[l]?|(el)[v]?|(elv)[i]?|(elvi)[n]?)?|[kmc]?m(3)?|l(i(t(r(o(s)?)?)?)?)?|(in))$/i,
         valor     = valor.match(regexp);
-    //regexp = ^\s*([-+]?\d+(?:\.\d*)?(?:e[+-]?\d+)?)\s*(f(a(r(e(n(h(e(i(t)?)?)?)?)?)?)?)?|(c(e(l(s(i(u(s)?)?)?)?)?)?)|(k(e(l(v(i(n)?)?)?)?)?)|m)\s*(to)?\s+(c(e(l(s(i(u(s)?)?)?)?)?)?|k(e(l(v(i(n)?)?)?)?)?|f(a(r(e(n(h(e(i(t)?)?)?)?)?)?)?)?|([kmc]?[m]))$/i
-    //regexp    = /^\s*([-+]?\d+(?:\.\d*)?(?:e[+-]?\d+)?)\s*([f]([a]|[a][r]?|(ar)[e]?|(are)[n]?|(aren)[h]?|(arenh)[e]?|(arenhe)[i]?|(arenhei)[t]?)?)\s*(to)?\s*([c]([e]|[e][l]?|(el)[s]?|(els)[i]?|(elsi)[u]?|(elsiu)[s]?)?)?$/i,
-
+    
     if (valor) {
       var numero = valor[1],
       tipo = valor[2].toLowerCase();
