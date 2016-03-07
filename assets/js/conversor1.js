@@ -238,8 +238,10 @@
 
       destino = valor[23];
       destino = destino.toLowerCase();
-
-      switch (tipo) {
+      
+      var letra = tipo.charAt(0);
+      
+      switch (letra) {
             case 'c':
               var celsius = new Celsius(numero);
 
