@@ -18,3 +18,8 @@ Este repositorio aloja la práctica de conversión de tipos, realizada con html,
 ### Despligue de la práctica
 
 * [Conversor de Temperatura](http://ull-esit-gradoii-dsi.github.io/object-oriented-programming-in-js-josue-nayra-dsi15-16/)
+
+### Páginas personales de gh-pages:
+
+* [Josué Toledo Castro](http://josuetc94.github.io/)
+* [María Nayra Rodríguez Pérez](http://alu0100406122.github.io/)
