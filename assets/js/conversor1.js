@@ -143,6 +143,10 @@
     {
       return valor * 10;
     }
+    this.toIn = function()
+    {
+      return valor * 0.39370;
+    }
   }
 
 // ----------------------------------------------------- //
@@ -309,7 +313,7 @@
                     elemento.innerHTML = centimetro.toMm() + " mm.";
                   break;
                   case 'in':
-                    elemento.innerHTML = pulgada.toIn() + " In."
+                    elemento.innerHTML = centimetro.toIn() + " In."
                   break;
                   default:
                     elemento.innerHTML = "Introduzca la unidad de destino(Km|m|mm)";
