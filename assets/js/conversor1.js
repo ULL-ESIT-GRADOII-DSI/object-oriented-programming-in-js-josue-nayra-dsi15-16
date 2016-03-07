@@ -112,18 +112,21 @@
   function Kilometro(valor)
   {
     Distancia.call(this,valor,'Km');
-    this.toM = function()
-    {
-        return valor * 1000;
-    }
-    this.toCm = function()
-    {
-        return valor * 10000;
-    }
-    this.toMm = function()
-    {
-        return valor * 1000000;
-    }
+
+  }
+  Kilometro.prototype = new Distancia;
+  Kilometro.prototype.constructor = Kilometro;
+  Kilometro.prototype.toM = function()
+  {
+    return this.valor * 1000;
+  }
+  Kilometro.prototype.toCm = function()
+  {
+    return this.valor * 10000;
+  }
+  Kilometro.prototype.toMm = function()
+  {
+    return this.valor * 1000000;
   }
 
 // ----------------------------------------------------- //
@@ -131,41 +134,46 @@
   function Centimetro(valor)
   {
     Distancia.call(this,valor,'cm');
-    this.toM = function()
-    {
-      return valor / 100;
-    }
-    this.toKm = function()
-    {
-      return valor / 10000;
-    }
-    this.toMm = function()
-    {
-      return valor * 10;
-    }
-    this.toIn = function()
-    {
-      return valor * 0.39370;
-    }
-  }
 
+  }
+  Centimetro.prototype = new Distancia;
+  Centimetro.prototype.constructor = Centimetro;
+  Centimetro.prototype.toM = function()
+  {
+    return this.valor / 100;
+  }
+  Centimetro.prototype.toKm = function()
+  {
+    return this.valor / 10000;
+  }
+  Centimetro.prototype.toMm = function()
+  {
+    return this.valor * 10;
+  }
+  Centimetro.prototype.toIn = function()
+  {
+    return this.valor * 0.39370;
+  }
+  
 // ----------------------------------------------------- //
 
   function Metro(valor)
   {
     Distancia.call(this,valor,'m');
-    this.toKm = function()
-    {
-        return valor / 1000;
-    }
-    this.toCm = function()
-    {
-        return valor * 100;
-    }
-    this.toMm = function()
-    {
-        return valor * 1000;
-    }
+  }
+  Metro.prototype = new Distancia;
+  Metro.prototype.constructor = Metro;
+  Metro.prototype.toKm = function()
+  {
+    return this.valor / 1000;
+  }
+  Metro.prototype.toCm = function()
+  {
+    return this.valor * 100;
+  }
+  Metro.prototype.toMm = function()
+  {
+    return this.valor * 1000;
   }
 
 // ----------------------------------------------------- //
@@ -180,7 +188,12 @@
     {
       return valor / 0.39370;
     }
-
+  }
+  Pulgada.prototype = new Distancia;
+  Pulgada.prototype.constructor = Pulgada;
+  Pulgada.prototype.toIn = function()
+  {
+    
   }
 
 // ----------------------------------------------------- //
