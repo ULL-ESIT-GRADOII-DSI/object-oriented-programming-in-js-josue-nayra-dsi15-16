@@ -2,14 +2,43 @@
   "use strict";
   console.log("Carga de la funcion principal");
 
+  function match_regexp(valor)
+  {
+    console.log("match_regexp");
+    console.log("valor->"+valor);
+    var regexp = /^\s*([-+]?\d+(?:\.\d*)?(?:e[+-]?\d+)?)\s*([kmc]?m(3)?|(in)|k([e]|(e)[l]?|(el)[v]?|(elv)[i]?|(elvi)[n]?)?|[c]([e]|[e][l]?|(el)[s]?|(els)[i]?|(elsi)[u]?|(elsiu)[s]?)?|[f]([a]|[a][r]?|(ar)[e]?|(are)[n]?|(aren)[h]?|(arenh)[e]?|(arenhe)[i]?|(arenhei)[t]?)?)\s*(to)?\s+([c]([e]|[e][l]?|(el)[s]?|(els)[i]?|(elsi)[u]?|(elsiu)[s]?)?|[f]([a]|[a][r]?|(ar)[e]?|(are)[n]?|(aren)[h]?|(arenh)[e]?|(arenhe)[i]?|(arenhei)[t]?)?|k([e]|(e)[l]?|(el)[v]?|(elv)[i]?|(elvi)[n]?)?|[kmc]?m(3)?|l(i(t(r(o(s)?)?)?)?)?|(in))$/i;
+    var res;
+    res = valor.match(regexp);
+    console.log("Res->"+res);
+    return res;
+  }
 
   function Medida(valor,tipo)
   {
     console.log("Accedo a clase Medida");
-    this.valor = valor || 0;
-    this.tipo  = tipo  || "Sin tipo";
-    /* tipo es opcional. Debería admitir  new Medida("45.2 Km") */
-    /* ademas de new Medida(45.2, "Km"  ) */
+    if(valor)
+    {
+      if(tipo)
+      {
+        this.valor = valor || 0;
+        //this.tipo  = tipo  || "Sin tipo";
+        this.tipo  = tipo  || "Sin tipo";
+      }
+      else
+      {
+        console.log("Else sin tipo");
+        var expresion;
+        expresion = match_regexp(valor);
+        console.log("Expresion:"+expresion);
+        var numero = expresion[1];
+        numero = parseFloat(numero);
+        var tipo = expresion[2];
+        tipo = tipo.toLowerCase();
+        this.valor = numero;
+        this.tipo = tipo;
+        console.log("Valor: " + this.valor + ", Tipo: " + this.tipo);
+      }
+    }
   }
   Medida.constructor = Medida;
 
@@ -33,7 +62,7 @@
   }
   Distancia.prototype = new Medida();
   Distancia.prototype.constructor = Distancia;
-  
+
 // ----------------------------------------------------- //
 
   function Volumen(valor,tipo)
@@ -154,7 +183,7 @@
   {
     return this.valor * 0.39370;
   }
-  
+
 // ----------------------------------------------------- //
 
   function Metro(valor)
@@ -223,12 +252,17 @@
   exports.Metro3 = Metro3;
 
     exports.convertir = function() {
-    var valor     = document.getElementById('convert').value,
+      //var medida = new Medida("45km");
+  /*  var valor     = document.getElementById('convert').value,
         elemento  = document.getElementById('converted'),
         /* Extienda la RegeExp a la especificación. use una XRegExp */
-        regexp = /^\s*([-+]?\d+(?:\.\d*)?(?:e[+-]?\d+)?)\s*([kmc]?m(3)?|(in)|k([e]|(e)[l]?|(el)[v]?|(elv)[i]?|(elvi)[n]?)?|[c]([e]|[e][l]?|(el)[s]?|(els)[i]?|(elsi)[u]?|(elsiu)[s]?)?|[f]([a]|[a][r]?|(ar)[e]?|(are)[n]?|(aren)[h]?|(arenh)[e]?|(arenhe)[i]?|(arenhei)[t]?)?)\s*(to)?\s+([c]([e]|[e][l]?|(el)[s]?|(els)[i]?|(elsi)[u]?|(elsiu)[s]?)?|[f]([a]|[a][r]?|(ar)[e]?|(are)[n]?|(aren)[h]?|(arenh)[e]?|(arenhe)[i]?|(arenhei)[t]?)?|k([e]|(e)[l]?|(el)[v]?|(elv)[i]?|(elvi)[n]?)?|[kmc]?m(3)?|l(i(t(r(o(s)?)?)?)?)?|(in))$/i,
-        valor     = valor.match(regexp);
-    
+        /*regexp = /^\s*([-+]?\d+(?:\.\d*)?(?:e[+-]?\d+)?)\s*([kmc]?m(3)?|(in)|k([e]|(e)[l]?|(el)[v]?|(elv)[i]?|(elvi)[n]?)?|[c]([e]|[e][l]?|(el)[s]?|(els)[i]?|(elsi)[u]?|(elsiu)[s]?)?|[f]([a]|[a][r]?|(ar)[e]?|(are)[n]?|(aren)[h]?|(arenh)[e]?|(arenhe)[i]?|(arenhei)[t]?)?)\s*(to)?\s+([c]([e]|[e][l]?|(el)[s]?|(els)[i]?|(elsi)[u]?|(elsiu)[s]?)?|[f]([a]|[a][r]?|(ar)[e]?|(are)[n]?|(aren)[h]?|(arenh)[e]?|(arenhe)[i]?|(arenhei)[t]?)?|k([e]|(e)[l]?|(el)[v]?|(elv)[i]?|(elvi)[n]?)?|[kmc]?m(3)?|l(i(t(r(o(s)?)?)?)?)?|(in))$/i,
+        valor     = valor.match(regexp);*/
+
+    var valor = document.getElementById('convert').value;
+    var elemento = document.getElementById('converted');
+    valor = match_regexp(valor);
+
     if (valor) {
       var numero = valor[1],
       tipo = valor[2].toLowerCase();
@@ -238,9 +272,9 @@
 
       destino = valor[23];
       destino = destino.toLowerCase();
-      
+
       var letra = tipo.charAt(0);
-      
+
       switch (letra) {
             case 'c':
               var celsius = new Celsius(numero);
@@ -373,7 +407,6 @@
         }
     }
     else
-      elemento.innerHTML = "Error! Pruebe algo como '3C to K' o '3C Kelvin'";
-
+      elemento.innerHTML = "Error! Pruebe algo como '3C to K' o '3C Kelvin'";*/
     }
 })(this);
