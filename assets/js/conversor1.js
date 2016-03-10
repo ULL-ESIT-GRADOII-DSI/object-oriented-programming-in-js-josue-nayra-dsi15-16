@@ -407,6 +407,6 @@
         }
     }
     else
-      elemento.innerHTML = "Error! Pruebe algo como '3C to K' o '3C Kelvin'";*/
+      elemento.innerHTML = "Error! Pruebe algo como '3C to K' o '3C Kelvin'";
     }
 })(this);
