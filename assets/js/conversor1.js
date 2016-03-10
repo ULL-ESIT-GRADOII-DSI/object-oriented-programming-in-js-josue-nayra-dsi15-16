@@ -6,9 +6,18 @@
   {
     console.log("match_regexp");
     console.log("valor->"+valor);
-    var regexp = /^\s*([-+]?\d+(?:\.\d*)?(?:e[+-]?\d+)?)\s*([kmc]?m(3)?|(in)|k([e]|(e)[l]?|(el)[v]?|(elv)[i]?|(elvi)[n]?)?|[c]([e]|[e][l]?|(el)[s]?|(els)[i]?|(elsi)[u]?|(elsiu)[s]?)?|[f]([a]|[a][r]?|(ar)[e]?|(are)[n]?|(aren)[h]?|(arenh)[e]?|(arenhe)[i]?|(arenhei)[t]?)?)\s*(to)?\s+([c]([e]|[e][l]?|(el)[s]?|(els)[i]?|(elsi)[u]?|(elsiu)[s]?)?|[f]([a]|[a][r]?|(ar)[e]?|(are)[n]?|(aren)[h]?|(arenh)[e]?|(arenhe)[i]?|(arenhei)[t]?)?|k([e]|(e)[l]?|(el)[v]?|(elv)[i]?|(elvi)[n]?)?|[kmc]?m(3)?|l(i(t(r(o(s)?)?)?)?)?|(in))$/i;
-    var res;
-    res = valor.match(regexp);
+    //var regexp = /^\s*([-+]?\d+(?:\.\d*)?(?:e[+-]?\d+)?)\s*([kmc]?m(3)?|(in)|k([e]|(e)[l]?|(el)[v]?|(elv)[i]?|(elvi)[n]?)?|[c]([e]|[e][l]?|(el)[s]?|(els)[i]?|(elsi)[u]?|(elsiu)[s]?)?|[f]([a]|[a][r]?|(ar)[e]?|(are)[n]?|(aren)[h]?|(arenh)[e]?|(arenhe)[i]?|(arenhei)[t]?)?)\s*(to)?\s+([c]([e]|[e][l]?|(el)[s]?|(els)[i]?|(elsi)[u]?|(elsiu)[s]?)?|[f]([a]|[a][r]?|(ar)[e]?|(are)[n]?|(aren)[h]?|(arenh)[e]?|(arenhe)[i]?|(arenhei)[t]?)?|k([e]|(e)[l]?|(el)[v]?|(elv)[i]?|(elvi)[n]?)?|[kmc]?m(3)?|l(i(t(r(o(s)?)?)?)?)?|(in))$/i;
+    var regexp = XRegExp('^(\\s*)                                         ' +
+                    '(?<valor> [-+]?[0-9]+(?:\.[0-9]+)?(?:e[+-]?[0-9]+)?) ' +
+                    '(\\s*)                                               ' +
+                    '(?<tipo> ([fck]|in|(k|m|c)?m(3)?))                   ' +
+                    '(\\s*)                                               ' +
+                    '(to)?                                                ' +
+                    '(\\s*)                                               ' +
+                    '(?<to> ([fck]|(k|m|c)?m(3)?|in|l))                   ' +
+                    '(\\s*)$','ix');
+    //res = valor.match(regexp);
+    var res = XRegExp.exec(valor,regexp);
     console.log("Res->"+res);
     return res;
   }
@@ -264,18 +273,16 @@
     valor = match_regexp(valor);
 
     if (valor) {
-      var numero = valor[1],
-      tipo = valor[2].toLowerCase();
-      var destino = null;
-      numero = parseFloat(numero);
-      console.log("Valor: " + numero + ", Tipo: " + tipo);
-
-      destino = valor[23];
+      var numero = valor.valor;
+      var tipo = valor.tipo;
+      tipo = tipo.toLowerCase();
+      var destino = valor.to;
       destino = destino.toLowerCase();
 
-      var letra = tipo.charAt(0);
+      numero = parseFloat(numero);
+      console.log("Valor: " + numero + ", Tipo: " + tipo+", Destino:" + destino);
 
-      switch (letra) {
+      switch (tipo) {
             case 'c':
               var celsius = new Celsius(numero);
 
@@ -386,7 +393,7 @@
 
             case 'm3':
               var metro3 = new Metro3(numero);
-              if(destino.startsWith("l"))
+              if(destino == "l")
                   elemento.innerHTML = metro3.toLitro() + " Litros";
               else
               {
