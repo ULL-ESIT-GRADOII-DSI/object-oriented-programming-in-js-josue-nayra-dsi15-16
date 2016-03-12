@@ -344,7 +344,8 @@
               
             case 'in':
               var pulgada = new Pulgada(numero);
-              elemento.innerHTML = pulgada.toCm().toFixed(4) + " cm";
+              if (destino == "cm")
+                elemento.innerHTML = pulgada.toCm().toFixed(4) + " cm";
               break;
 
             case 'm3':
@@ -355,11 +356,11 @@
               if(destino == "cm3")
                   elemento.innerHTML = metro3.toCm3() + " cm3";
               if(destino == "mm3")
-                    elemento.innerHTML = metro3.toMm3() + " mm3.";
+                  elemento.innerHTML = metro3.toMm3() + " mm3.";
               break;
 
   	        default:
-              elemento.innerHTML = "La unidad de medida de conversión introducida es desconocida. Inténtelo de nuevo";
+                elemento.innerHTML = "La unidad de medida de conversión introducida es desconocida. Inténtelo de nuevo";
       }
   }
   else
